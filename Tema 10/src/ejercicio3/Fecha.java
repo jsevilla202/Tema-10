@@ -34,11 +34,19 @@ public class Fecha {
 	 * @param mes Recive el mes y se lo da al mes de la clase
 	 * @param ano Recive el año y se lo da al año de la clase
 	 */
-	public Fecha(int dia, int mes, int ano) {
+	public Fecha(int dia, int mes, int ano) throws DayException, MonthException{
 		super();
-		this.dia = dia;
-		this.mes = mes;
-		this.ano = ano;
+		if(dia<=0 || dia>31) {
+			throw new DayException();
+		}
+		if(mes<=0 || mes>12) {
+			throw new MonthException();
+		}
+		else{
+			this.dia = dia;
+			this.mes = mes;
+			this.ano = ano;
+		}
 	}
 
 	/**
