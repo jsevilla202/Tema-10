@@ -1,0 +1,148 @@
+package ejercicio2;
+
+/**
+ * Clase de las funciones de Hora
+ * 
+ * @author Jaime Sevilla
+ *
+ */
+public class Hora {
+	/**
+	 * Parametro de hora
+	 */
+	private int hora;
+	/**
+	 * Parametro de minuto
+	 */
+	private int minuto;
+	/**
+	 * Parametro de segundo
+	 */
+	private int segundo;
+
+	/**
+	 * Constructor por defecto
+	 */
+	public Hora() {
+		super();
+	}
+
+	/**
+	 * Constructor con todos los parametros
+	 * 
+	 * @param hora    Recibe la hora y le da el valor a la hora de la clase
+	 * @param minuto  Recibe los minutos y le da el valor a los minutos de la clase
+	 * @param segundo Recibe los segundos y le da el valor a los segundos de la
+	 *                clase
+	 */
+	public Hora(int hora, int minuto, int segundo) throws NegativeSecondException, NegativeMinuteException, NegativeHourException{
+		super();
+		if(hora<0){
+			throw new NegativeHourException();
+		}
+		if(minuto<0){
+			throw new NegativeMinuteException();
+		}
+		if(segundo<0){
+			throw new NegativeSecondException();
+		}
+		else if(hora<=24&&minuto<=59&&segundo<=29) {
+		this.hora = hora;
+		this.minuto = minuto;
+		this.segundo = segundo;
+		}
+	}
+
+	/**
+	 * Getter de hora
+	 * 
+	 * @return Devuelve la hora
+	 */
+	public int getHora() {
+		return hora;
+	}
+
+	/**
+	 * Getter de Minuto
+	 * 
+	 * @return Devuelve los minutos
+	 */
+	public int getMinuto() {
+		return minuto;
+	}
+
+	/**
+	 * Getter de Segundo
+	 * 
+	 * @return Devuelve los segundos
+	 */
+	public int getSegundo() {
+		return segundo;
+	}
+
+	/**
+	 * Setter de Hora
+	 * 
+	 * @param hora Hora dada por el usuario
+	 */
+	public void setHora(int hora) throws  NegativeHourException{
+		if (hora <= 23 && hora >= 0) {
+			this.hora = hora;
+		}
+		if(hora<0){
+			throw new NegativeHourException();
+		}
+	}
+
+	/**
+	 * Setter de Minutos
+	 * 
+	 * @param minuto Minutos dados por el usuario
+	 */
+	public void setMinuto(int minuto) throws NegativeMinuteException{
+		if (minuto <= 59 && minuto >= 0) {
+			this.minuto = minuto;
+		}
+		if(minuto<0){
+			throw new NegativeMinuteException();
+		}
+	}
+
+	/**
+	 * Setter de Segundos
+	 * 
+	 * @param segundo Segundos dados por el usuario
+	 */
+	public void setSegundo(int segundo) throws NegativeSecondException{
+		if (segundo <= 59 && segundo >= 0) {
+			this.segundo = segundo;
+		}
+		if(segundo<0){
+			throw new NegativeSecondException();
+		}
+	}
+
+	/**
+	 * Incrementa los segundos
+	 * 
+	 * @param incremento Incremento a los segundos dado por el usuario
+	 */
+	// Sin parametro de entrada
+	public void incrementaSegundo() {
+		segundo++;
+
+		if (segundo >= 60) {
+			segundo -= 60;
+			minuto++;
+		}
+
+		if (minuto >= 60) {
+			minuto -= 60;
+			hora++;
+		}
+
+		if (hora >= 23) {
+			hora -= 24;
+		}
+	}
+}
